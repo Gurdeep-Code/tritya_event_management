@@ -270,7 +270,7 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
             title: "Submitted successfully",
             description: "Your details have been saved.",
           });
-         navigate("/thank-you", { replace: true });
+         navigate("/admission-chat/thank-you", { replace: true });
         },
         onError: (error) => {
           console.error("Lead submission failed:", error);
