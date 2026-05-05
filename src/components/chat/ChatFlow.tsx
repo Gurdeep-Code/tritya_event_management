@@ -6,6 +6,7 @@ import { MessageBubble } from "./MessageBubble";
 import { TypingBubble } from "./TypingBubble";
 import { OptionButtons } from "./OptionButtons";
 import { toast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 type Msg =
   | { id: string; type: "bot"; content: React.ReactNode; ts: string }
@@ -49,6 +50,7 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const runIdRef = useRef(0);
+  const navigate = useNavigate();
   const leadSubmitMutation = useMutation({
     mutationFn: async (payload: Record<string, string>) => {
       const endpoint = import.meta.env.VITE_LEAD_ENDPOINT?.trim();
@@ -268,7 +270,7 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
             title: "Submitted successfully",
             description: "Your details have been saved.",
           });
-          window.location.replace("https://airhostessinstitute.com/thank-you/");
+         navigate("/thank-you", { replace: true });
         },
         onError: (error) => {
           console.error("Lead submission failed:", error);
