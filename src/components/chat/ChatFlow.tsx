@@ -19,14 +19,18 @@ type Step =
   | "askPhone"
   | "askName"
   | "askEmail"
-  | "askPincode"
+  | "askCity"
+  | "askQualification"
   | "done";
 
 const TYPING_DELAY = 800;
 
 const now = () => {
   const d = new Date();
-  return `Today at ${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}`;
+  const hours24 = d.getHours();
+  const hours12 = hours24 % 12 || 12;
+  const ampm = hours24 >= 12 ? "PM" : "AM";
+  return `Today at ${hours12.toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")} ${ampm}`;
 };
 
 const uid = () => Math.random().toString(36).slice(2, 9);
@@ -74,7 +78,8 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
     name: leadData.name ?? "",
     phone: leadData.phone ?? "",
     email: leadData.email ?? "",
-    pincode: leadData.pincode ?? "",
+    city: leadData.city ?? "",
+    qualification: leadData.qualification ?? "",
     course: leadData.course ?? "",
     interest: leadData.interest ?? "",
     contactPref: leadData.contactPref ?? "",
@@ -121,24 +126,26 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
       void (async () => {
         await botSequence([
           <>
-            Welcome to <strong>Tritya Air Hostess & Aviation Academy</strong>,
-            where we provide professional aviation courses and training programs
-            with placement assistance.
+            Welcome to <strong>Tritya Institute of Event Management</strong>, established since
+            2010, where we offer degree and diploma courses after 12th class and
+            graduation in Event Management and Wedding Planning, with assured
+            placement support and paid internships in leading event management
+            and wedding planning companies.
           </>,
           <>
             <span className="font-semibold text-secondary">
-              Zero Cost EMI Available
+            Upto 90% off* With Scholarship
             </span>
             {" | "}
             <span className="font-semibold text-primary">
-              IGI Airport Training
+            University Recognised Courses
             </span>
             {" | "}
             <span className="font-semibold text-accent">
-              Scholarship Available*
+            100+ Events Days Experience
             </span>
           </>,
-          <>Which course are you looking for?</>,
+          <>We are here to enhance and customize your experience. <strong>Kindly select the course</strong></>,
         ]);
         if (runIdRef.current === myRun) setStep("q1");
       })();
@@ -160,7 +167,7 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
     pushUser(value);
     if (step === "q1") {
       setLead((l) => ({ ...l, course: value }));
-      await botSequence([<>Great! You are here for:</>]);
+      await botSequence([<>You are here for</>]);
       setStep("q2");
     } else if (step === "q2") {
       setLead((l) => ({ ...l, interest: value }));
@@ -186,8 +193,13 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
       if (!/^[^\s@]{1,64}@[^\s@]+\.[^\s@]{2,}$/.test(val.trim()))
         return "Enter a valid email";
     }
-    if (step === "askPincode") {
-      if (!/^\d{6}$/.test(val.trim())) return "Enter a valid 6-digit pincode";
+    if (step === "askCity") {
+      if (val.trim().length < 2 || val.trim().length > 60)
+        return "Enter a valid city";
+    }
+    if (step === "askQualification") {
+      if (val.trim().length < 2 || val.trim().length > 80)
+        return "Enter your qualification";
     }
     return null;
   };
@@ -228,15 +240,22 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
       setStep("askEmail");
     } else if (step === "askEmail") {
       setLead((l) => ({ ...l, email: val }));
-      await botSequence([<>And finally, your Pincode?</>]);
-      setStep("askPincode");
-    } else if (step === "askPincode") {
-      const finalLead: Record<string, string> = { ...lead, pincode: val };
+      await botSequence([<>Your City?</>]);
+      setStep("askCity");
+    } else if (step === "askCity") {
+      setLead((l) => ({ ...l, city: val }));
+      await botSequence([<>Your Qualification?</>]);
+      setStep("askQualification");
+    } else if (step === "askQualification") {
+      const finalLead: Record<string, string> = { ...lead, qualification: val };
       setLead(finalLead);
       await botSequence([
         <>🎉 Thanks for sharing your details! Redirecting…</>,
       ]);
       setStep("done");
+      await botSequence([
+        <>In case of urgency, kindly call on  <strong><i>+91-9910225389 / +91-9990937354</i></strong></>,
+      ]);
 
       const payload = buildLeadPayload(finalLead, "final_submit");
       console.log("Final lead submission:", payload);
@@ -265,7 +284,8 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
     "askPhone",
     "askName",
     "askEmail",
-    "askPincode",
+    "askCity",
+    "askQualification",
   ].includes(step);
 
   const inputPlaceholder =
@@ -273,12 +293,18 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
       askPhone: "10-digit mobile number",
       askName: "Your full name",
       askEmail: "you@example.com",
-      askPincode: "6-digit pincode",
-    }[step as "askPhone" | "askName" | "askEmail" | "askPincode"] ??
+      askCity: "Your city",
+      askQualification: "Your qualification",
+    }[step as
+      | "askPhone"
+      | "askName"
+      | "askEmail"
+      | "askCity"
+      | "askQualification"] ??
     "Type your message…";
 
   const inputType =
-    step === "askPhone" || step === "askPincode"
+    step === "askPhone"
       ? "tel"
       : step === "askEmail"
         ? "email"
@@ -297,16 +323,19 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
                 {m.type === "bot" ? m.content : m.content}
               </MessageBubble>
             ))}
-            {typing && <TypingBubble key="typing" />}
+            {typing || step === "done" && <TypingBubble key="typing" />}
             {!typing && step === "q1" && (
               <OptionButtons
                 key="opts-q1"
                 options={[
-                  "Air Hostess",
-                  "Cabin Crew",
-                  "Aviation",
-                  "Ground Staff",
-                  "Ticketing",
+                  "BBA in Event Management",
+                  "MBA in Event Management",
+                  "Diploma in Event Management",
+                  "PG Diploma in Event Management",
+                  "Wedding Planning Certification",
+                  "Celebrity Management Certification",
+                  "Sports Management Certification",
+                  "Digital Marketing Certification"
                 ]}
                 onSelect={handleOption}
               />
@@ -316,7 +345,7 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
                 key="opts-q2"
                 options={[
                   "Fees Details",
-                  "About Tritya",
+                  "About us",
                   "Scholarship",
                   "All of the above",
                 ]}

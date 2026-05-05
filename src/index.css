@@ -8,40 +8,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Aviation brand palette */
-    --background: 48 100% 96%;            /* cream #FFFBEB */
-    --foreground: 215 100% 12%;           /* near navy text */
+    /* Tritya Event Management palette */
+    --background: 0 0% 96%;               /* #F4F4F4 */
+    --foreground: 0 0% 13%;               /* #222222 */
 
     --card: 0 0% 100%;
-    --card-foreground: 215 100% 12%;
+    --card-foreground: 0 0% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 100% 12%;
+    --popover-foreground: 0 0% 13%;
 
-    --primary: 213 100% 18%;              /* Navy #002B5B */
+    --primary: 346 84% 33%;               /* Deep Red #9B0D2D */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 343 69% 36%;             /* Crimson #9D1C3F */
+    --secondary: 227 70% 18%;             /* Dark Navy Blue #0E1A4F */
     --secondary-foreground: 0 0% 100%;
 
-    --accent: 14 100% 55%;                /* Vibrant Orange #FF5722 */
+    --accent: 348 73% 41%;                /* Highlight Red #B61C3B */
     --accent-foreground: 0 0% 100%;
 
-    --muted: 48 50% 92%;
-    --muted-foreground: 215 20% 35%;
+    --cta: 219 32% 27%;                   /* Blue-Grey #2F3E5C */
+    --cta-foreground: 0 0% 100%;
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 35%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 25% 88%;
-    --input: 215 25% 88%;
-    --ring: 14 100% 55%;
+    --border: 0 0% 85%;                   /* #D9D9D9 */
+    --input: 0 0% 85%;
+    --ring: 348 73% 41%;
 
     --radius: 1rem;
 
-    --shadow-bubble: 0 4px 16px -4px hsl(213 100% 18% / 0.15);
-    --shadow-glow: 0 8px 32px -8px hsl(14 100% 55% / 0.45);
-    --gradient-header: linear-gradient(135deg, hsl(213 100% 18%), hsl(343 69% 36%));
+    --shadow-bubble: 0 4px 16px -4px hsl(227 70% 18% / 0.15);
+    --shadow-glow: 0 8px 32px -8px hsl(348 73% 41% / 0.35);
+    --gradient-header: linear-gradient(135deg, hsl(346 84% 33%), hsl(227 70% 18%));
 
     --sidebar-background: 0 0% 98%;
 
