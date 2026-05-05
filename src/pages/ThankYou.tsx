@@ -48,7 +48,7 @@ const ThankYou = () => {
         <Link
             replace={true}
             to="https://tiemdelhi.com"
-            className="w-[50%] mt-4 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-accent text-accent-foreground font-semibold hover:bg-accent/90 transition shadow-glow bg-secondary"
+            className="w-[50%] mt-4 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-accent-foreground font-semibold hover:bg-accent/90 transition shadow-glow bg-secondary"
           >
             Back To TIEM
           </Link>
