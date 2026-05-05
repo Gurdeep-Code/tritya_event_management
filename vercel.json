@@ -15,15 +15,5 @@
       "destination": "/admission-chat",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/admission-chat/assets/:path*",
-      "destination": "/assets/:path*"
-    },
-    {
-      "source": "/admission-chat/:path*",
-      "destination": "/index.html"
-    }
   ]
 }
