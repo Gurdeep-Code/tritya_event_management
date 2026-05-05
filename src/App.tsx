@@ -18,7 +18,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/admission-chat" replace />} />
-          <Route path="/admission-chat" element={<AdmissionChatLayout />}>
+          <Route path="admission-chat/*" element={<AdmissionChatLayout />}>
             <Route index element={<Index />} />
             <Route path="thank-you" element={<ThankYou />} />
           </Route>
