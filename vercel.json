@@ -18,10 +18,6 @@
   ],
   "rewrites": [
     {
-      "source": "/admission-chat",
-      "destination": "/admission-chat/"
-    },
-    {
       "source": "/admission-chat/assets/:path*",
       "destination": "/assets/:path*"
     },
