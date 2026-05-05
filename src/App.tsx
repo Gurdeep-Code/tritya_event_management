@@ -19,7 +19,7 @@ const App = () => (
           <Route path="/" element={<Navigate to="/admission-chat" replace={true} />}/>
           <Route path="/admission-chat/*" element={<Outlet />}>
             <Route index element={<Index />} />
-            <Route path="thank-you" element={<ThankYou />} />
+            <Route path="/thank-you" element={<ThankYou />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
