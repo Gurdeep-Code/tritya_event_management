@@ -12,7 +12,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/admission-chat/",
+      "destination": "/admission-chat",
       "permanent": true
     }
   ],
