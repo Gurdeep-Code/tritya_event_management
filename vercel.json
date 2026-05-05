@@ -3,27 +3,10 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
-    {
-      "src": "^/$",
-      "status": 301,
-      "headers": {
-        "Location": "/admission-chat"
-      }
-    },
-    {
-      "src": "^/admission-chat/assets/(.*)$",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "^/admission-chat/(.*)$",
-      "dest": "/index.html"
-    }
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
