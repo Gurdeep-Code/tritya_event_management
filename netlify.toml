@@ -1,5 +1,5 @@
 [build]
-  publish = "admission-chat"
+  publish = "dist"
   command = "npm run build"
 
 [[redirects]]

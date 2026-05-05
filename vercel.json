@@ -5,8 +5,29 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "admission-chat"
+        "distDir": "dist"
       }
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/admission-chat/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/admission-chat",
+      "destination": "/admission-chat/"
+    },
+    {
+      "source": "/admission-chat/assets/:path*",
+      "destination": "/assets/:path*"
+    },
+    {
+      "source": "/admission-chat/:path*",
+      "destination": "/index.html"
     }
   ]
 }
