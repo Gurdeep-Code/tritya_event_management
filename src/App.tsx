@@ -4,7 +4,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "./pages/NotFound.tsx";
-import AdmissionChat from "./components/chat/AdmissionChat.tsx";
+import Index from "./pages/Index.tsx";
+import ThankYou from "./pages/ThankYou.tsx";
+import AdmissionChatLayout from "./layouts/AdmissionChatLayout.tsx";
 
 const queryClient = new QueryClient();
 
@@ -15,8 +17,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/admission-chat" replace={true} />}/>
-          <Route path="/admission-chat/*" element={<AdmissionChat />}/>          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Navigate to="/admission-chat" replace />} />
+          <Route path="/admission-chat" element={<AdmissionChatLayout />}>
+            <Route index element={<Index />} />
+            <Route path="thank-you" element={<ThankYou />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
