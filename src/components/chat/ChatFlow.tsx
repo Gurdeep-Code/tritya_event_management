@@ -83,8 +83,10 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
     course: leadData.course ?? "",
     interest: leadData.interest ?? "",
     contactPref: leadData.contactPref ?? "",
+    source: "website_chatbot",
     page_url: window.location.href,
     submission_stage: stage,
+    submitted_at: new Date().toISOString(),
   });
 
   const pushBot = (content: React.ReactNode) =>

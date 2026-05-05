@@ -7,7 +7,7 @@ https://docs.google.com/spreadsheets/d/1_RFn3htUvZVxHhK8ZocSdQAYKEHq9ONXKaXTzQQI
 ## Environment Variable
 Add this in your `.env` file:
 
-`VITE_LEAD_ENDPOINT="https://script.google.com/macros/s/AKfycbxI62IIUGhcoNnvBX85z4TOGRScOXELEHJfW5zzNvzW8dLVesGfOKEs40VGzdaa3l8/exec"`
+`VITE_LEAD_ENDPOINT="https://script.google.com/macros/s/AKfycbxs1VQ1-zZbmpWkHtjUuvJtUlJX2vI_FNIoGBiFK5J6L3-KY5xs7ZnZUbFHgbpZYLht/exec"`
 //dev
 
 
