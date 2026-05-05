@@ -8,6 +8,11 @@
   status = 301
 
 [[redirects]]
+  from = "/admission-chat/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+[[redirects]]
   from = "/admission-chat/*"
   to = "/index.html"
   status = 200
