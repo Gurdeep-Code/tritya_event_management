@@ -13,16 +13,17 @@ const Index = () => {
     <div className="h-[100dvh] flex flex-col bg-background overflow-hidden">
       {/* Top promo bar */}
       <div className="bg-secondary/90 shrink-0 text-accent-foreground text-center text-[11px] sm:text-sm font-semibold py-2 sm:py-2.5 px-3 sm:px-4">
-      🎓✨ TIEM Delhi - Where future event professionals are made.</div>
+      🎓✨ TIEM Delhi - Where future event professionals are made.
+      </div>
 
       {/* Sticky Header */}
       <header className="shrink-0 z-30 backdrop-blur border-b border-border bg-background">
         <div className="max-w-5xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2 sm:gap-3">
-          <div className="flex items-center min-w-0">
+          <div className="flex items-center min-w-0 gap-2 mx-auto">
             <img
               src={logoMain}
               alt="Tritya Event Management"
-              className="w-36 sm:w-48 md:w-56 object-contain drop-shadow-sm"
+              className="w-32 sm:w-48 md:w-56 object-contain drop-shadow-sm"
             />
              <img
               src={logoBest}
