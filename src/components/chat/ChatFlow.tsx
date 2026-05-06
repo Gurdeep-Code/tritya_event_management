@@ -130,26 +130,29 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
       void (async () => {
         await botSequence([
           <>
-            Welcome to <strong>Tritya Institute of Event Management</strong>, established since
-            2010, where we offer degree and diploma courses after 12th class and
-            graduation in Event Management and Wedding Planning, with assured
-            placement support and paid internships in leading event management
-            and wedding planning companies.
+            Welcome to <strong>Tritya Institute of Event Management</strong>,
+            established since 2010, where we offer degree and diploma courses
+            after 12th class and graduation in Event Management and Wedding
+            Planning, with assured placement support and paid internships in
+            leading event management and wedding planning companies.
           </>,
           <>
             <span className="font-semibold text-secondary">
-            Upto 90% off* With Scholarship
+              Get Upto 90% Discount With Scholarship
             </span>
             {" | "}
             <span className="font-semibold text-primary">
-            University Recognised Courses
+              University Recognised Courses
             </span>
             {" | "}
             <span className="font-semibold text-accent">
-            100+ Events Days Experience
+              100+ Events Days Experience
             </span>
           </>,
-          <>We are here to enhance and customize your experience. <strong>Kindly select the course</strong></>,
+          <>
+            We are here to enhance and customize your experience.{" "}
+            <strong>Kindly select the course</strong>
+          </>,
         ]);
         if (runIdRef.current === myRun) setStep("q1");
       })();
@@ -258,7 +261,12 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
       ]);
       setStep("done");
       await botSequence([
-        <>In case of urgency, kindly call on  <strong><i>+91-9910225389 / +91-9990937354</i></strong></>,
+        <>
+          In case of urgency, kindly call on{" "}
+          <strong>
+            <i>+91-9910225389 / +91-9990937354</i>
+          </strong>
+        </>,
       ]);
 
       const payload = buildLeadPayload(finalLead, "final_submit");
@@ -270,7 +278,7 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
             title: "Submitted successfully",
             description: "Your details have been saved.",
           });
-         navigate("/admission-chat/thank-you", { replace: true });
+          navigate("/admission-chat/thank-you", { replace: true });
         },
         onError: (error) => {
           console.error("Lead submission failed:", error);
@@ -299,20 +307,17 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
       askEmail: "you@example.com",
       askCity: "Your city",
       askQualification: "Your qualification",
-    }[step as
-      | "askPhone"
-      | "askName"
-      | "askEmail"
-      | "askCity"
-      | "askQualification"] ??
-    "Type your message…";
+    }[
+      step as
+        | "askPhone"
+        | "askName"
+        | "askEmail"
+        | "askCity"
+        | "askQualification"
+    ] ?? "Type your message…";
 
   const inputType =
-    step === "askPhone"
-      ? "tel"
-      : step === "askEmail"
-        ? "email"
-        : "text";
+    step === "askPhone" ? "tel" : step === "askEmail" ? "email" : "text";
 
   return (
     <div className="flex flex-col h-full min-h-0">
@@ -327,7 +332,7 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
                 {m.type === "bot" ? m.content : m.content}
               </MessageBubble>
             ))}
-            {typing || step === "done" && <TypingBubble key="typing" />}
+            {typing || (step === "done" && <TypingBubble key="typing" />)}
             {!typing && step === "q1" && (
               <OptionButtons
                 key="opts-q1"
@@ -339,7 +344,7 @@ export const ChatFlow = ({ resetKey, onSubmittingChange }: ChatFlowProps) => {
                   "Wedding Planning Certification",
                   "Celebrity Management Certification",
                   "Sports Management Certification",
-                  "Digital Marketing Certification"
+                  "Digital Marketing Certification",
                 ]}
                 onSelect={handleOption}
               />

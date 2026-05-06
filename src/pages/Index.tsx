@@ -13,7 +13,7 @@ const Index = () => {
     <div className="h-[100dvh] flex flex-col bg-background overflow-hidden">
       {/* Top promo bar */}
       <div className="bg-secondary/90 shrink-0 text-accent-foreground text-center text-[11px] sm:text-sm font-semibold py-2 sm:py-2.5 px-3 sm:px-4">
-      🎓✨ TIEM Delhi - Where future event professionals are made.
+      🎓✨ TIEM Delhi – Creating Future Event Managers, Wedding Planners & Industry Leaders.
       </div>
 
       {/* Sticky Header */}
