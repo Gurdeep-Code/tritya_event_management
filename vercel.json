@@ -9,11 +9,12 @@
       }
     }
   ],
+  "redirects": [
+    { "source": "/", "destination": "/admission-chat", "permanent": true }
+  ],
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/admission-chat/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/admission-chat/:path*", "destination": "/index.html" }
   ]
 }
 
